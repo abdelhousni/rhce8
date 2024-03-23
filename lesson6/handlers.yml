@@ -1,9 +1,10 @@
 ---
 - name: set up web server
   hosts: all
+  force_handlers: true
   tasks:
     - name: install httpd
-      yum: 
+      yum:
         name: httpd
         state: latest
     - name: copy index.html
@@ -13,7 +14,7 @@
       notify:
         - restart_web
     - name: copy nothing - intended to fail
-      copy: 
+      copy:
         src: /tmp/nothing
         dest: /var/www/html/nothing.html
   handlers:
